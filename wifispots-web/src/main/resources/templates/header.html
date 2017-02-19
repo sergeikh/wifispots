@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<body>
+	<div th:fragment="headerFragment (menuClass)">
+		<!-- Header -->
+		<header id="header" th:class="${menuClass}">
+			<h1 id="logo" style="height: 40px;"></h1>
+			<nav id="nav">
+				<ul>
+					<li class="current"><a href="index.html" th:href="@{/}">Welcome</a></li>
+					<li class="submenu"><a href="#">Layouts</a>
+						<ul>
+							<li><a href="left-sidebar.html">Left Sidebar</a></li>
+							<li><a href="right-sidebar.html">Right Sidebar</a></li>
+							<li><a href="no-sidebar.html">No Sidebar</a></li>
+							<li><a href="contact.html" th:href="@{/contact}">Contact</a></li>
+							<li class="submenu"><a href="#">Submenu</a>
+								<ul>
+									<li><a href="#">Dolore Sed</a></li>
+									<li><a href="#">Consequat</a></li>
+									<li><a href="#">Lorem Magna</a></li>
+									<li><a href="#">Sed Magna</a></li>
+									<li><a href="#">Ipsum Nisl</a></li>
+								</ul></li>
+						</ul></li>
+					<li th:if="(${activeUser} eq null)"><a href="#"
+						class="button special" th:href="@{/login}">Sign Up</a></li>
+					<li th:if="(${activeUser} ne null)">
+						<form id="exitForm" th:action="@{/logout}" method="post">
+							<a href="#" class="button special"
+								onclick="document.getElementById('exitForm').submit();">Sign
+								Out</a>
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+	</div>
+
+</body>
+</html>

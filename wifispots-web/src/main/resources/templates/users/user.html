@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title th:text="|Edit user  ${user.email}|"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js" th:src="@{/js/ie/html5shiv.js}"></script><![endif]-->
+<link rel="stylesheet" href="assets/css/main.css"
+	th:href="@{/css/main.css}" />
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" th:src="@{/css/ie8.css}" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" th:src="@{/css/ie9.css}"/><![endif]-->
+</head>
+<body>
+	<div id="page-wrapper">
+
+		<div th:replace="header :: headerFragment(menuClass=${''})"></div>
+
+		<article id="main">
+			<section class="wrapper style4 special container 75%" >
+				<div class="content" >
+					<form method="post" action="#" th:action="@{/users/{uId}(uId=${user.id})}" th:object="${user}">
+						<div class="row 50%">
+							<div class="12u 12u(mobile)">
+								<input type="text" th:field="*{email}" disabled="true"/>
+							</div>
+						</div>
+                        <div class="row 50%">
+                            <div class="6u">
+                                <div class="select-wrapper">
+                                    <select id="role" th:field="*{role}">
+                                        <option th:each="rl : ${roles}" th:value="${rl}" th:text="${rl}" />
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="6u" style="text-align:center">
+                                <input type="checkbox" th:field="*{blocked}" th:id="${#ids.seq('blocked')}"
+                                       th:checked="*{blocked}"/>
+                                <label th:for="${#ids.prev('blocked')}" th:text="Blocked"/>
+                            </div>
+                        </div>
+                        <div class="row 50%">
+                            <div class="6u 6u(mobile)" style="text-align: left">
+                                <label th:text="|Since: ${#dates.format(user.since, 'dd/MM/yyyy')}|"/>
+                                <br/>
+                                <label th:text="*{lastLogin eq null} ? 'Last login: never' : |Last login: ${#dates.format(user.lastLogin, 'dd/MM/yyyy HH:mm')}|"/>
+                            </div>
+                            <div class="6u 6u(mobile)" style="text-align: right">
+                                <ul class="actions align-right">
+                                    <li><input type="submit" name="sendNewPassword" value="Send new password" /></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row">
+							<div class="6u 6u(mobile)" style="text-align: right">
+								<ul class="actions align-center">
+									<li><input type="submit" value="Save" /></li>
+								</ul>
+							</div>
+                            <div class="6u 6u(mobile)" style="text-align: left">
+                                <ul class="actions align-center">
+                                    <li><input type="button" onclick="window.location='/users';" value="Cancel" /></li>
+                                </ul>
+                            </div>
+						</div>
+					</form>
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+
+			<ul class="icons">
+				<li><a href="#" class="icon circle fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon circle fa-facebook"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon circle fa-google-plus"><span
+						class="label">Google+</span></a></li>
+				<li><a href="#" class="icon circle fa-github"><span
+						class="label">Github</span></a></li>
+				<li><a href="#" class="icon circle fa-dribbble"><span
+						class="label">Dribbble</span></a></li>
+			</ul>
+
+			<ul class="copyright">
+				<li>&copy; Untitled</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+	<script src="js/jquery.dropotron.min.js"
+		th:src="@{/js/jquery.dropotron.min.js}"></script>
+	<script src="js/jquery.scrolly.min.js"
+		th:src="@{/js/jquery.scrolly.min.js}"></script>
+	<script src="js/jquery.scrollgress.min.js"
+		th:src="@{/js/jquery.scrollgress.min.js}"></script>
+	<script src="js/skel.min.js" th:src="@{/js/skel.min.js}"></script>
+	<script src="js/util.js" th:src="@{/js/util.js}"></script>
+	<!--[if lte IE 8]><script src="js/ie/respond.min.js" th:src="@{/js/respond.min.js}"></script><![endif]-->
+	<script src="assets/js/main.js" th:src="@{/js/main.js}"></script>
+
+</body>
+</html>
