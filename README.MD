@@ -1,4 +1,4 @@
-Wifi spots SaaS application 
+Wifi spots SaaS application [![Build Status](https://travis-ci.org/sergeikh/wifispots.svg?branch=master)](https://travis-ci.org/sergeikh/wifispots) 
 
 Application for management wifi spots in organisation or open site, and
 project for my Docker, microservices tests.
